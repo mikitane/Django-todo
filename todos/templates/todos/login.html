@@ -1,0 +1,14 @@
+{% extends 'todos/signup_base.html' %}
+
+{% block body %}
+
+<h2>Login</h2>
+<form method='post'>
+	{% csrf_token %}
+	{{ form.as_p }}
+	<div><button type="submit" class="btn btn-primary btn-sm" style="margin-right:20px">Login</button> <a href={% url 'register' %} >Register</a></div>
+</form>
+
+
+
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'todos/signup_base.html' %}
+
+{% block body %}
+
+<h2>Register</h2>
+<form method='post'>
+	{% csrf_token %}
+	{{ form.as_p }}
+	<div><button class="btn btn-primary" style="margin-right:20px" type="submit">Register</button><a href={% url 'index' %} >Back</a></div>
+</form>
+
+
+
+{% endblock %}
