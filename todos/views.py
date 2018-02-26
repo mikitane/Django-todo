@@ -5,6 +5,8 @@ from rest_framework.views import APIView
 from django.contrib.auth.forms import UserCreationForm
 from todos.models import ToDo
 from todos.serializers import ToDoSerializer
+from django.contrib.auth.models import User
+
 
 
 def index(request):
