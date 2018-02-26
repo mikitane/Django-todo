@@ -25,7 +25,7 @@ SECRET_KEY = 'q(3y*6^1u$-h3@joh@(lox#lr)zx0l4hn^!@n8!k0_kuyhv_!)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['mmttodo.pythonanywhere.com']
 
 
 # Application definition
