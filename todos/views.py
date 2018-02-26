@@ -34,31 +34,34 @@ def register(request):
 
 class ToDoView(APIView):
     def get(self,request):
-        todos = ToDo.objects.filter(user=request.user).order_by('deadline','priority')
+        user_ = User.objects.get(username='miikantesti')
+        todos = ToDo.objects.filter(user=user_).order_by('deadline','priority')
         serializer = ToDoSerializer(todos,many=True)
         return Response(serializer.data)
 
     def post(self,request):
+        user_ = User.objects.get(username='miikantesti')
         _data = request.data.copy()
-        _data['user'] = request.user.id
+        _data['user'] = user_.id
         print(_data)
         serializer = ToDoSerializer(data=_data)
         if serializer.is_valid():
             serializer.save()
-            todos = ToDo.objects.filter(user=request.user).order_by('deadline','priority')
+            todos = ToDo.objects.filter(user=user_).order_by('deadline','priority')
             serializer = ToDoSerializer(todos,many=True)
             return Response(serializer.data)
-        
+
     def put(self,request):
+        user_ = User.objects.get(username='miikantesti')
         todo_id = request.data['id']
         todo = ToDo.objects.get(id=todo_id)
-        if request.user == todo.user:
+        if user_ == todo.user:
             print('JEE')
             print(request.data)
             serializer = ToDoSerializer(todo,data=request.data,partial=True)
             if serializer.is_valid():
                 serializer.save()
-                todos = ToDo.objects.filter(user=request.user).order_by('deadline','priority')
+                todos = ToDo.objects.filter(user=user_).order_by('deadline','priority')
                 serializer = ToDoSerializer(todos,many=True)
                 return Response(serializer.data)
-            
+
