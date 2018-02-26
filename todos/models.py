@@ -18,9 +18,9 @@ class ToDo(models.Model):
         (IDLE,'Idle'),
         (PROCESS,'Process'),
         (DONE,'Done'))
-    
-    
-    user = models.ForeignKey(User)
+
+
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
     text = models.CharField(default='',max_length=50)
     category = models.CharField(default='-',max_length=20)
     priority = models.IntegerField(default=NORMAL_PRIORITY,
@@ -28,4 +28,3 @@ class ToDo(models.Model):
     status = models.IntegerField(default=IDLE,choices=STATUS_CHOICES)
     created = models.DateField(auto_now_add=True)
     deadline = models.DateField()
-
