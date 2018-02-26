@@ -36,13 +36,13 @@ def register(request):
 
 class ToDoView(APIView):
     def get(self,request):
-        user_ = User.objects.get(username='miikantesti')
+        user_ = User.objects.get(username='testi1')
         todos = ToDo.objects.filter(user=user_).order_by('deadline','priority')
         serializer = ToDoSerializer(todos,many=True)
         return Response(serializer.data)
 
     def post(self,request):
-        user_ = User.objects.get(username='miikantesti')
+        user_ = User.objects.get(username='testi1')
         _data = request.data.copy()
         _data['user'] = user_.id
         print(_data)
@@ -54,7 +54,7 @@ class ToDoView(APIView):
             return Response(serializer.data)
 
     def put(self,request):
-        user_ = User.objects.get(username='miikantesti')
+        user_ = User.objects.get(username='testi1')
         todo_id = request.data['id']
         todo = ToDo.objects.get(id=todo_id)
         if user_ == todo.user:
